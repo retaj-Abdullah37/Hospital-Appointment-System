@@ -1,0 +1,150 @@
+package projectcode1.utils;
+
+import projectcode1.models.User;
+import projectcode1.models.Patient;
+import projectcode1.models.Doctor;
+import projectcode1.models.Admin;
+
+/**
+ * SessionManager class - Manages the current logged-in user session
+ * Demonstrates: Singleton Pattern, Polymorphism
+ *
+ * This class keeps track of the currently logged-in user throughout the application
+ *
+ * @author CS313 Term Project
+ */
+public class SessionManager {
+
+    // Singleton instance
+    private static SessionManager instance;
+
+    // Current logged-in user (Polymorphism - can be Patient, Doctor, or Admin)
+    private User currentUser;
+
+    /**
+     * Private constructor - Singleton pattern
+     */
+    private SessionManager() {
+    }
+
+    /**
+     * Get singleton instance of SessionManager
+     * @return SessionManager instance
+     */
+    public static SessionManager getInstance() {
+        if (instance == null) {
+            instance = new SessionManager();
+        }
+        return instance;
+    }
+
+    /**
+     * Set the current logged-in user
+     * @param user User object (can be Patient, Doctor, or Admin)
+     */
+    public void setCurrentUser(User user) {
+        this.currentUser = user;
+        System.out.println("User logged in: " + user.getName() + " (" + user.getRole() + ")");
+    }
+
+    /**
+     * Get the current logged-in user
+     * @return User object, or null if no user is logged in
+     */
+    public User getCurrentUser() {
+        return currentUser;
+    }
+
+    /**
+     * Get current user as Patient (with type casting)
+     * @return Patient object, or null if current user is not a patient
+     */
+    public Patient getCurrentPatient() {
+        if (currentUser instanceof Patient) {
+            return (Patient) currentUser;
+        }
+        return null;
+    }
+
+    /**
+     * Get current user as Doctor (with type casting)
+     * @return Doctor object, or null if current user is not a doctor
+     */
+    public Doctor getCurrentDoctor() {
+        if (currentUser instanceof Doctor) {
+            return (Doctor) currentUser;
+        }
+        return null;
+    }
+
+    /**
+     * Get current user as Admin (with type casting)
+     * @return Admin object, or null if current user is not an admin
+     */
+    public Admin getCurrentAdmin() {
+        if (currentUser instanceof Admin) {
+            return (Admin) currentUser;
+        }
+        return null;
+    }
+
+    /**
+     * Check if a user is currently logged in
+     * @return true if user is logged in, false otherwise
+     */
+    public boolean isLoggedIn() {
+        return currentUser != null;
+    }
+
+    /**
+     * Check if current user is a patient
+     * @return true if current user is a patient, false otherwise
+     */
+    public boolean isPatient() {
+        return currentUser instanceof Patient;
+    }
+
+    /**
+     * Check if current user is a doctor
+     * @return true if current user is a doctor, false otherwise
+     */
+    public boolean isDoctor() {
+        return currentUser instanceof Doctor;
+    }
+
+    /**
+     * Check if current user is an admin
+     * @return true if current user is an admin, false otherwise
+     */
+    public boolean isAdmin() {
+        return currentUser instanceof Admin;
+    }
+
+    /**
+     * Get the role of the current user
+     * @return Role string (PATIENT, DOCTOR, ADMIN), or null if no user is logged in
+     */
+    public String getCurrentRole() {
+        if (currentUser != null) {
+            return currentUser.getRole();
+        }
+        return null;
+    }
+
+    /**
+     * Logout the current user
+     */
+    public void logout() {
+        if (currentUser != null) {
+            System.out.println("User logged out: " + currentUser.getName());
+            currentUser = null;
+        }
+    }
+
+    /**
+     * Clear the session (same as logout)
+     */
+    public void clearSession() {
+        logout();
+    }
+}

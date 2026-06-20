@@ -1,0 +1,175 @@
+package projectcode1.utils;
+
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
+import java.util.Optional;
+
+/**
+ * AlertHelper class - Utility class for displaying alerts and dialogs
+ * Demonstrates: Helper/Utility class pattern
+ *
+ * This class provides convenient methods to show different types of alerts
+ *
+ * @author CS313 Term Project
+ */
+public class AlertHelper {
+
+    /**
+     * Show an information alert
+     * @param title Alert title
+     * @param header Alert header
+     * @param content Alert content/message
+     */
+    public static void showInfo(String title, String header, String content) {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(header);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
+
+    /**
+     * Show a warning alert
+     * @param title Alert title
+     * @param header Alert header
+     * @param content Alert content/message
+     */
+    public static void showWarning(String title, String header, String content) {
+        Alert alert = new Alert(AlertType.WARNING);
+        alert.setTitle(title);
+        alert.setHeaderText(header);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
+
+    /**
+     * Show an error alert
+     * @param title Alert title
+     * @param header Alert header
+     * @param content Alert content/message
+     */
+    public static void showError(String title, String header, String content) {
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(header);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
+
+    /**
+     * Show a success alert (using information type)
+     * @param title Alert title
+     * @param header Alert header
+     * @param message Success message
+     */
+    public static void showSuccess(String title, String header, String message) {
+        showInfo(title, header, message);
+    }
+
+    /**
+     * Show a database error alert
+     * @param message Error message from exception
+     */
+    public static void showDatabaseError(String message) {
+        showError("Database Error", "A database error occurred", message);
+    }
+
+    /**
+     * Show a validation error alert
+     * @param message Validation error message
+     */
+    public static void showValidationError(String message) {
+        showWarning("Validation Error", "Please check your input", message);
+    }
+
+    /**
+     * Show a confirmation dialog
+     * @param title Dialog title
+     * @param header Dialog header
+     * @param content Dialog content/message
+     * @return true if user clicked OK, false if user clicked Cancel
+     */
+    public static boolean showConfirmation(String title, String header, String content) {
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(header);
+        alert.setContentText(content);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        return result.isPresent() && result.get() == ButtonType.OK;
+    }
+
+    /**
+     * Show a delete confirmation dialog
+     * @param itemName Name of the item to delete
+     * @return true if user confirmed deletion, false otherwise
+     */
+    public static boolean showDeleteConfirmation(String itemName) {
+        return showConfirmation(
+            "Confirm Deletion",
+            "Are you sure you want to delete this item?",
+            "Deleting: " + itemName + "\n\nThis action cannot be undone."
+        );
+    }
+
+    /**
+     * Show a cancel confirmation dialog
+     * @param itemName Name of the item to cancel
+     * @return true if user confirmed cancellation, false otherwise
+     */
+    public static boolean showCancelConfirmation(String itemName) {
+        return showConfirmation(
+            "Confirm Cancellation",
+            "Are you sure you want to cancel?",
+            "Cancelling: " + itemName
+        );
+    }
+
+    /**
+     * Show a login error alert
+     */
+    public static void showLoginError() {
+        showError("Login Failed", "Invalid Credentials",
+                 "The username or password you entered is incorrect.\nPlease try again.");
+    }
+
+    /**
+     * Show a registration success alert
+     */
+    public static void showRegistrationSuccess() {
+        showSuccess("Registration Successful", "Success!",
+                   "Your account has been created successfully!\nYou can now log in.");
+    }
+
+    /**
+     * Show an empty fields error
+     */
+    public static void showEmptyFieldsError() {
+        showValidationError("Please fill in all required fields.");
+    }
+
+    /**
+     * Show appointment booking success
+     */
+    public static void showAppointmentBooked() {
+        showSuccess("Appointment Booked", "Success!",
+                   "Your appointment has been scheduled successfully!");
+    }
+
+    /**
+     * Show appointment cancellation success
+     */
+    public static void showAppointmentCancelled() {
+        showSuccess("Appointment Cancelled", "Success!",
+                   "The appointment has been cancelled.");
+    }
+
+    /**
+     * Show appointment completion success
+     */
+    public static void showAppointmentCompleted() {
+        showSuccess("Appointment Completed", "Success!",
+                   "The appointment has been marked as completed with visit notes.");
+    }
+}

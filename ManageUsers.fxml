@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<!--
+    AddVisitNotes.fxml - Add visit notes for appointment
+    Uses VBox and GridPane layout
+-->
+
+<VBox alignment="TOP_CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/8"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="projectcode1.controllers.AddVisitNotesController">
+
+    <padding>
+        <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+    </padding>
+
+    <!-- Title -->
+    <Label text="Add Visit Notes">
+        <font>
+            <Font name="System Bold" size="24.0" />
+        </font>
+    </Label>
+
+    <!-- Appointment Info -->
+    <VBox spacing="8.0" style="-fx-background-color: #f0f0f0; -fx-padding: 15;">
+        <Label text="Appointment Details">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+        </Label>
+
+        <GridPane hgap="10.0" vgap="8.0">
+            <Label text="Appointment ID:" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                <font><Font name="System Bold" size="12.0" /></font>
+            </Label>
+            <Label fx:id="appointmentIdLabel" text="-" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+            <Label text="Patient:" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                <font><Font name="System Bold" size="12.0" /></font>
+            </Label>
+            <Label fx:id="patientNameLabel" text="-" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+            <Label text="Date:" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                <font><Font name="System Bold" size="12.0" /></font>
+            </Label>
+            <Label fx:id="dateLabel" text="-" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+            <Label text="Time:" GridPane.columnIndex="0" GridPane.rowIndex="3">
+                <font><Font name="System Bold" size="12.0" /></font>
+            </Label>
+            <Label fx:id="timeLabel" text="-" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+        </GridPane>
+    </VBox>
+
+    <!-- Visit Notes Input -->
+    <VBox spacing="10.0">
+        <Label text="Enter Visit Notes:">
+            <font>
+                <Font name="System Bold" size="14.0" />
+            </font>
+        </Label>
+
+        <TextArea fx:id="visitNotesArea" promptText="Enter detailed notes about the patient's visit, diagnosis, treatment, and recommendations..."
+                  prefHeight="200.0" prefWidth="500.0" wrapText="true" />
+
+        <Label fx:id="statusLabel" textFill="RED">
+            <font>
+                <Font size="12.0" />
+            </font>
+        </Label>
+    </VBox>
+
+    <!-- Action Buttons -->
+    <HBox spacing="15.0" alignment="CENTER">
+        <VBox.margin>
+            <Insets top="10.0" />
+        </VBox.margin>
+
+        <Button text="Save and Mark Completed" onAction="#handleSaveAndComplete"
+                prefWidth="200.0" prefHeight="40.0"
+                style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 14px;" />
+
+        <Button text="Cancel" onAction="#handleCancel"
+                prefWidth="120.0" prefHeight="40.0"
+                style="-fx-background-color: #757575; -fx-text-fill: white; -fx-font-size: 14px;" />
+    </HBox>
+
+</VBox>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<!--
+    BookAppointment.fxml - Book appointment with selected doctor
+    Uses GridPane for form layout
+-->
+
+<VBox alignment="TOP_CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/8"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="projectcode1.controllers.BookAppointmentController">
+
+    <padding>
+        <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+    </padding>
+
+    <!-- Title -->
+    <Label text="Book Appointment">
+        <font>
+            <Font name="System Bold" size="24.0" />
+        </font>
+    </Label>
+
+    <!-- Doctor Info -->
+    <VBox spacing="5.0">
+        <Label fx:id="doctorNameLabel" text="Doctor: Dr. Name">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+        </Label>
+        <Label fx:id="doctorSpecialtyLabel" text="Specialty: -">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+    </VBox>
+
+    <!-- Appointment Form -->
+    <GridPane hgap="10.0" vgap="15.0">
+        <padding>
+            <Insets top="20.0" />
+        </padding>
+
+        <!-- Date -->
+        <Label text="Select Date:" GridPane.columnIndex="0" GridPane.rowIndex="0">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <DatePicker fx:id="datePicker" promptText="Choose appointment date"
+                    prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+        <!-- Time -->
+        <Label text="Select Time:" GridPane.columnIndex="0" GridPane.rowIndex="1">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <ComboBox fx:id="timeCombo" promptText="Choose appointment time"
+                  prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+        <!-- Buttons -->
+        <Button text="Confirm Booking" onAction="#handleConfirmBooking"
+                prefWidth="150.0" prefHeight="40.0"
+                GridPane.columnIndex="1" GridPane.rowIndex="2"
+                style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 14px;">
+            <GridPane.margin>
+                <Insets top="10.0" />
+            </GridPane.margin>
+        </Button>
+
+        <Button text="Cancel" onAction="#handleCancel"
+                prefWidth="150.0" prefHeight="40.0"
+                GridPane.columnIndex="1" GridPane.rowIndex="3"
+                style="-fx-background-color: #757575; -fx-text-fill: white; -fx-font-size: 14px;">
+        </Button>
+
+    </GridPane>
+
+    <!-- Status Label -->
+    <Label fx:id="statusLabel" textFill="RED">
+        <font>
+            <Font size="12.0" />
+        </font>
+    </Label>
+
+</VBox>

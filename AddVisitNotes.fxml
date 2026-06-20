@@ -1,0 +1,127 @@
+package projectcode1.models;
+
+import java.time.LocalDate;
+
+/**
+ * Patient class - Represents a patient user
+ * Demonstrates: Inheritance (extends User), Polymorphism
+ *
+ * @author CS313 Term Project
+ */
+public class Patient extends User {
+    // Patient-specific attributes
+    private int patientId;
+    private LocalDate dateOfBirth;
+    private String bloodGroup;
+
+    /**
+     * Default constructor
+     */
+    public Patient() {
+        super();
+    }
+
+    /**
+     * Full parameterized constructor
+     * @param userId User ID
+     * @param username Username
+     * @param password Password
+     * @param name Full name
+     * @param email Email
+     * @param phone Phone
+     * @param patientId Patient ID
+     * @param dateOfBirth Date of birth
+     * @param bloodGroup Blood group
+     */
+    public Patient(int userId, String username, String password, String name,
+                   String email, String phone, int patientId,
+                   LocalDate dateOfBirth, String bloodGroup) {
+        super(userId, username, password, "PATIENT", name, email, phone);
+        this.patientId = patientId;
+        this.dateOfBirth = dateOfBirth;
+        this.bloodGroup = bloodGroup;
+    }
+
+    /**
+     * Constructor without IDs (for new patients)
+     * @param username Username
+     * @param password Password
+     * @param name Full name
+     * @param email Email
+     * @param phone Phone
+     * @param dateOfBirth Date of birth
+     * @param bloodGroup Blood group
+     */
+    public Patient(String username, String password, String name,
+                   String email, String phone, LocalDate dateOfBirth,
+                   String bloodGroup) {
+        super(username, password, "PATIENT", name, email, phone);
+        this.dateOfBirth = dateOfBirth;
+        this.bloodGroup = bloodGroup;
+    }
+
+    // Implementing abstract methods from User class (Polymorphism)
+    /**
+     * Implementation of abstract getRole() method
+     * @return "PATIENT"
+     */
+    @Override
+    public String getRole() {
+        return "PATIENT";
+    }
+
+    /**
+     * Implementation of abstract displayInfo() method
+     * Displays patient-specific information
+     */
+    @Override
+    public void displayInfo() {
+        System.out.println("=== Patient Information ===");
+        System.out.println("Patient ID: " + patientId);
+        System.out.println("Name: " + getName());
+        System.out.println("Email: " + getEmail());
+        System.out.println("Phone: " + getPhone());
+        System.out.println("Date of Birth: " + dateOfBirth);
+        System.out.println("Blood Group: " + bloodGroup);
+    }
+
+    // Getters and Setters for patient-specific attributes
+    public int getPatientId() {
+        return patientId;
+    }
+
+    public void setPatientId(int patientId) {
+        this.patientId = patientId;
+    }
+
+    public LocalDate getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(LocalDate dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public String getBloodGroup() {
+        return bloodGroup;
+    }
+
+    public void setBloodGroup(String bloodGroup) {
+        this.bloodGroup = bloodGroup;
+    }
+
+    /**
+     * Override toString() for debugging
+     * @return String representation of Patient object
+     */
+    @Override
+    public String toString() {
+        return "Patient{" +
+                "patientId=" + patientId +
+                ", userId=" + getUserId() +
+                ", name='" + getName() + '\'' +
+                ", dateOfBirth=" + dateOfBirth +
+                ", bloodGroup='" + bloodGroup + '\'' +
+                '}';
+    }
+}
